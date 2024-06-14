@@ -340,7 +340,9 @@ var skinGeometry []byte
 
 // defaultClientData edits the ClientData passed to have defaults set to all fields that were left unchanged.
 func defaultClientData(address, username string, d *login.ClientData) {
-	d.ServerAddress = address
+	//d.ServerAddress = address this is very bad for lunar
+	rand2.Seed(time.Now().Unix())
+
 	d.ThirdPartyName = username
 	if d.DeviceOS == 0 {
 		d.DeviceOS = protocol.DeviceAndroid
@@ -390,7 +392,7 @@ func defaultClientData(address, username string, d *login.ClientData) {
 
 // setAndroidData ensures the login.ClientData passed matches settings you would see on an Android device.
 func setAndroidData(data *login.ClientData) {
-	data.DeviceOS = protocol.DeviceAndroid
+	//data.DeviceOS = protocol.DeviceAndroid this is also not good for lunar
 	data.GameVersion = protocol.CurrentVersion
 }
 
